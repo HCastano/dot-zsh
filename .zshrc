@@ -7,7 +7,7 @@ export ZSH=/Users/hcastano/.oh-my-zsh
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-ZSH_THEME="norm"
+ZSH_THEME="refined"
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -47,11 +47,15 @@ ZSH_THEME="norm"
 # Would you like to use another custom folder than $ZSH/custom?
 # ZSH_CUSTOM=/path/to/new-custom-folder
 
+VIM_MODE_VICMD_KEY='jk'
+MODE_CURSOR_VIINS="#00ff00 blinking bar"
+KEYTIMEOUT=10
+
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git zsh-syntax-highlighting zsh-nvm)
+plugins=(git zsh-syntax-highlighting zsh-nvm zsh-vim-mode)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -88,15 +92,32 @@ export GPG_TTY=$(tty)
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 # source /Users/hcastano/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 alias vim="nvim"
+alias vimwiki="nvim ~/.vimwiki/index.wiki"
 alias vimconfig="nvim ~/.vimrc"
 alias zshconfig="nvim ~/.zshrc"
 
-# TODO: Should move these aliases to a separate file
 alias ls="exa"
 alias l="exa -l"
 alias la="exa -la"
 alias lg="exa -l --git"
 alias lag="exa -la --git"
+
+# GitHub CLI aliases
+alias ghco="gh pr checkout"
+
+# Aliases for Cargo Remote
+r() {
+    cargo remote -r "bob-the-builder" -- $1 -p $2 
+}
+
+# Use `fd` instead of `find` if it's available (much faster)
+if [ -x "$(command -v fd)" ]; then
+    # Note: By default we don't follow hidden files or .gitignores
+    export FZF_DEFAULT_COMMAND='fd --type f'
+
+    # To apply the command to CTRL-T as well
+    export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+fi
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
