@@ -47,8 +47,12 @@ ZSH_THEME="robbyrussell"
 # Would you like to use another custom folder than $ZSH/custom?
 # ZSH_CUSTOM=/path/to/new-custom-folder
 
-VIM_MODE_VICMD_KEY='jk'
+# I don't want any prompt indications of the mode I'm in (e.g little arrows indicating
+# that I'm in `normal` mode) since a) I don't use them and b) they glitch out with
+# the Starship prompt
+MODE_INDICATOR=""
 MODE_CURSOR_VIINS="#00ff00 blinking bar"
+VIM_MODE_VICMD_KEY='jk'
 KEYTIMEOUT=10
 
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
