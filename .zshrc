@@ -109,6 +109,9 @@ alias lag="exa -la --git"
 # GitHub CLI aliases
 alias ghco="gh pr checkout"
 
+# ASCII art weather report!
+alias weather="curl wttr.in/toronto"
+
 # Aliases for Cargo Remote
 r() {
     cargo remote -r "bob-the-builder" -- $1 -p $2 
