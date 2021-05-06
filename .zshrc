@@ -79,6 +79,10 @@ fi
 # ssh
 # export SSH_KEY_PATH="~/.ssh/rsa_id"
 
+# Use this for `ssh-agent`
+export PATH="/usr/local/opt/gnupg@2.2/bin:$PATH"
+export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
+
 # gpg
 export GPG_TTY=$(tty)
 
