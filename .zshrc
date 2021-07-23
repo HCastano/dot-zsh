@@ -90,6 +90,15 @@ export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
 # gpg
 export GPG_TTY=$(tty)
 
+agent_active=$(ps aux | grep "gpg-agent" | grep -v grep)
+if [ -z "$agent_active" ]
+then
+    echo "Starting GPG Agent"
+    eval $( gpg-agent --daemon --enable-ssh-support )
+fi
+
+export BAT_THEME="Nord"
+
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
 # users are encouraged to define aliases within the ZSH_CUSTOM folder.
